@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <list>
 #include <string>
+#include <vector>
 
 struct Vector2
 {
@@ -54,6 +55,10 @@ int main()
     list.push_back(Point("B", Vector2(20, 80)));
     list.push_back(Point("C", Vector2(75, 10)));
     list.push_back(Point("D", Vector2(130, 80)));
+    list.push_back(Point("D", Vector2(20, 80)));
+    list.push_back(Point("D", Vector2(150, 80)));
+    list.push_back(Point("D", Vector2(1780, 80)));
+    list.push_back(Point("D", Vector2(1311, 80)));
     list.push_back(Point("E", Vector2(100, 200)));
 
     std::cout << list;
@@ -64,5 +69,38 @@ int main()
     }
     std::cout << '\n';
     std::cout << list;
+
+    auto it = std::find_if(list.begin(), list.end(), [](const Point& p) {
+        return p.name == "D";
+        });
+    
+    std::cout << '\n';
+    std::cout << (*it).name;
+
+    std::cout << '\n';
+    std::vector<std::list<Point>::iterator> v;
+    auto it = list.begin();
+    while (it != list.end())
+    {
+        //// 조건
+        if ((*it).name == "D")
+        {
+            v.push_back(it);
+        }
+        ++it;
+
+
+
+
+
+        it = std::find_if(it, list.end(), [](const Point& p) {
+            return p.name == "D";
+            });
+        if (it != list.end())
+        {
+            v.push_back(it);
+            ++it;
+        }
+    }
 }
 
