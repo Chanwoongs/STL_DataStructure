@@ -13,11 +13,21 @@ struct UserInfo
     int exp; // 경험치
 
 public:
+    UserInfo() = default;
     UserInfo(const char* name, int level, int exp)
     {
         this->userName = name;
         this->level = level;
         this->exp = exp;
+    }
+
+    UserInfo& operator=(const UserInfo& other)
+    {
+        this->userName = other.userName;
+        this->level = other.level;
+        this->exp = other.exp;
+        
+        return *this;
     }
 };
 
@@ -44,7 +54,7 @@ public:
     bool IsFull();
 
     // 특정 유저의 정보
-    UserInfo& GetUserOfName(const char* userName);
+    bool GetUserOfName(const char* userName, UserInfo& userInfo);
 
     // 방장의 유저 정보
     UserInfo& GetMasterUser();

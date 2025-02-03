@@ -52,15 +52,17 @@ bool GameRoomUser::IsFull()
     return users.size() == maxCount;
 }
 
-UserInfo& GameRoomUser::GetUserOfName(const char* userName)
+bool GameRoomUser::GetUserOfName(const char* userName, UserInfo& userInfo)
 {
     for (auto it = users.begin(); it != users.end(); ++it)
     {
         if (strcmp((*it).userName.c_str(), userName) == 0)
         {
-            return *it;
+            userInfo = (*it);
+            return true;
         }
     }
+    return false;
 }
 
 UserInfo& GameRoomUser::GetMasterUser()

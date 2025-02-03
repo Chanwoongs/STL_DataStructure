@@ -50,7 +50,9 @@ int main()
     gameRoom.BanUser(3);
 
     // GameDev의 레벨 확인.
-    cout << "[TaeJun의 정보] " << gameRoom.GetUserOfName("TaeJun");
+    UserInfo taejun;
+    gameRoom.GetUserOfName("TaeJun", taejun);
+    cout << "[TaeJun의 정보] " << taejun;
 
     // 마지막에 방에 들어온 유저 정보.
     cout << "[가장 마지막에 들어온 유저 정보] " << gameRoom.GetUserOfLastOrder();
