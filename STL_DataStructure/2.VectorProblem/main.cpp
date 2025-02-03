@@ -1,6 +1,10 @@
 ﻿#include <iostream>
 #include "GameRoomUser.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 using namespace std;
 
 ostream& operator<<(ostream& os, UserInfo& userInfo)
@@ -11,6 +15,8 @@ ostream& operator<<(ostream& os, UserInfo& userInfo)
 
 int main()
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     // 방 생성.
     GameRoomUser gameRoom;
 
@@ -49,10 +55,12 @@ int main()
     // 3번 밴.
     gameRoom.BanUser(3);
 
-    // GameDev의 레벨 확인.
+    // Taejun 정보 확인.
     UserInfo taejun;
-    gameRoom.GetUserOfName("TaeJun", taejun);
-    cout << "[TaeJun의 정보] " << taejun;
+    if (gameRoom.GetUserOfName("TaeJun", taejun))
+    {
+        cout << "[TaeJun의 정보] " << taejun;
+    }
 
     // 마지막에 방에 들어온 유저 정보.
     cout << "[가장 마지막에 들어온 유저 정보] " << gameRoom.GetUserOfLastOrder();
