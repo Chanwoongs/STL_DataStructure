@@ -79,7 +79,7 @@ int main()
 
     std::cout << '\n';
     std::vector<std::list<Point>::iterator> v;
-    auto it = list.begin();
+    it = list.begin();
     while (it != list.end())
     {
         //// 조건
@@ -102,5 +102,6 @@ int main()
             ++it;
         }
     }
+    std::cin.get();
 }
 
